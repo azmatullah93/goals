@@ -1,16 +1,14 @@
 const express = require("express");
-const app = express();
-const goalRoutes = require("./routes/goalRoutes");
 const dotenv = require("dotenv").config();
-const port = process.env.PORT || 3000;
+const colors = require("colors");
+const port = process.env.PORT || 8000;
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello world");
-  console.log("Hello world");
+const app = express();
+
+app.use("/", (req, res) => {
+  res.send("Server is up and running");
 });
-
-app.use("/api/goals", goalRoutes);
-
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is listening on PORT: ${port}`.cyan.bold);
+  console.log(`http://localhost:${port}`.red.bold.underline);
 });
